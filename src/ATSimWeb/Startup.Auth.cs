@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using ATSimService.AdminUser;
+using ATSimWeb.Config;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
-using SimpleTokenProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +17,17 @@ namespace ATSimWeb
         // The secret key every token will be signed with.
         // Keep this safe on the server!
         private static readonly string secretKey = "mysupersecret_secretkey!123";
-
+        private static IAdminUserService adminUserService;
         private void ConfigureAuth(IApplicationBuilder app)
         {
+            adminUserService = (IAdminUserService)app.ApplicationServices.GetService(typeof(IAdminUserService));
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
 
             app.UseSimpleTokenProvider(new TokenProviderOptions
             {
                 Path = "/api/token",
-                Audience = "ExampleAudience",
-                Issuer = "ExampleIssuer",
+                Audience = "Gordon Wang",
+                Issuer = "http://localhost/",
                 SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256),
                 IdentityResolver = GetIdentity
             });
@@ -38,11 +40,11 @@ namespace ATSimWeb
 
                 // Validate the JWT Issuer (iss) claim
                 ValidateIssuer = true,
-                ValidIssuer = "ExampleIssuer",
+                ValidIssuer = "http://localhost/",
 
                 // Validate the JWT Audience (aud) claim
                 ValidateAudience = true,
-                ValidAudience = "ExampleAudience",
+                ValidAudience = "Gordon Wang",
 
                 // Validate the token expiry
                 ValidateLifetime = true,
@@ -72,10 +74,11 @@ namespace ATSimWeb
 
         private Task<ClaimsIdentity> GetIdentity(string username, string password)
         {
+            var adminUser = adminUserService.GetUserInfo(username, password);
             // Don't do this in production, obviously!
-            if (username == "TEST" && password == "TEST123")
+            if (adminUser!=null)
             {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(username, "Token"), new Claim[] { }));
+                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(adminUser.Id.ToString(), "Token"), new Claim[] { }));
             }
 
             // Credentials are invalid, or account doesn't exist

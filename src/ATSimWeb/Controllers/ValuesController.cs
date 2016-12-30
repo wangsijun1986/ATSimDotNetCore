@@ -7,6 +7,7 @@ using ATSimService;
 using ATSimDto;
 using ATSimWeb.Config;
 using Microsoft.AspNetCore.Authorization;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ATSimWeb.Controllers
 {
@@ -26,7 +27,9 @@ namespace ATSimWeb.Controllers
         public IActionResult Get()
         {
             //return BadRequestWithContent("001001001");
-
+            string a = HttpContext.Request.Headers["Authorization"];
+            var jwt = new JwtSecurityTokenHandler();
+            string key = jwt.ReadJwtToken(a).Claims.ElementAt(0).Value;
             return new JsonResult(new string[] { "value1", "value2" });
         }
 

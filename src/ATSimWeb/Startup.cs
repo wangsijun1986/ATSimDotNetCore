@@ -12,10 +12,10 @@ using ATSimCommon;
 using Newtonsoft.Json.Serialization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using SimpleTokenProvider;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.DataProtection;
 using System.IO;
+using ATSimService.AdminUser;
 
 namespace ATSimWeb
 {
@@ -41,6 +41,7 @@ namespace ATSimWeb
             {
                 option.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
+            //create data encryption configuration.
             services.AddDataProtection()
                 .SetApplicationName("ATSim_DotNetCore")
                 .ProtectKeysWithDpapi()
@@ -58,7 +59,7 @@ namespace ATSimWeb
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+            
             ConfigureAuth(app);
             app.UseStaticFiles();
             app.UseMvc();

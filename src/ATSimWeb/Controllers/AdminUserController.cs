@@ -24,20 +24,14 @@ namespace ATSimWeb.Controllers
         [HttpGet(Name ="GetUserInfoByUserNameAndPassword")]
         public IActionResult Get(string name,string password)
         {
-            string newpassword = new Encryption().EncryptValue(password);
-            Console.WriteLine(newpassword);
-            Console.WriteLine(new Encryption().DecryptValue(newpassword));
-            Console.WriteLine(("CfDJ8LL8QYofHaNEtNExOmn_XYTFO57mDcXKvUcvYfPn_8UFzB9aPb1QS2RbyEbcgLj5x7PolDVrmqVSUXQP2FxpfFx-tH7PgPtO2I1smiGwQvuxg8ZCG2GNrV8BGCl1_LCa3Q").Length);
-            Console.WriteLine(new Encryption().DecryptValue("CfDJ8LL8QYofHaNEtNExOmn_XYTFO57mDcXKvUcvYfPn_8UFzB9aPb1QS2RbyEbcgLj5x7PolDVrmqVSUXQP2FxpfFx-tH7PgPtO2I1smiGwQvuxg8ZCG2GNrV8BGCl1_LCa3Q"));
-            Console.WriteLine(new Encryption().DecryptValue("CfDJ8LL8QYofHaNEtNExOmn_XYTWiINzrGrvTbA5CXZWtpslof46Ul3uLwWyI3S8oIeQ-ETeiuMDMcpxSbbVycHnGVTOREaRE43Il07_WWYM9o2jkb6XzywYMllMDoLqJM_1nQ"));
-            return new JsonResult(adminUserService.GetUserInfo(name, password));
+            return Ok(adminUserService.GetUserInfo(name, password));
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return new JsonResult(adminUserService.GetUserInfo(id));
+            return Ok(adminUserService.GetUserInfo(id));
         }
 
         // POST api/values

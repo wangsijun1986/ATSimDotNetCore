@@ -1,12 +1,14 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
-namespace SimpleTokenProvider
+namespace ATSimWeb.Config
 {
     public class TokenProviderMiddleware
     {
@@ -44,7 +46,7 @@ namespace SimpleTokenProvider
             var username = context.Request.Form["username"];
             var password = context.Request.Form["password"];
 
-            var identity = await GetIdentity(username, password);
+            var identity = await _options.IdentityResolver(username, password);
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
@@ -58,7 +60,7 @@ namespace SimpleTokenProvider
             // You can add other claims here, if you want:
             var claims = new Claim[]
             {
-        new Claim(JwtRegisteredClaimNames.Sub, username),
+        new Claim(JwtRegisteredClaimNames.Sub, identity.Claims.ElementAt(0).Value),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
             };
@@ -85,6 +87,7 @@ namespace SimpleTokenProvider
         }
         private Task<ClaimsIdentity> GetIdentity(string username, string password)
         {
+
             // DON'T do this in production, obviously!
             if (username == "TEST" && password == "TEST123")
             {
@@ -96,7 +99,6 @@ namespace SimpleTokenProvider
         }
         public static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
-        
-   
+
     }
 }

@@ -1,9 +1,11 @@
-﻿using System;
-using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace SimpleTokenProvider
+namespace ATSimWeb.Config
 {
     public class TokenProviderOptions
     {
@@ -28,6 +30,4 @@ namespace SimpleTokenProvider
         public Func<Task<string>> NonceGenerator { get; set; }
             = new Func<Task<string>>(() => Task.FromResult(Guid.NewGuid().ToString()));
     }
-
 }
-

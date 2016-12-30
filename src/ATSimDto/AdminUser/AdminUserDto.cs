@@ -30,7 +30,7 @@ namespace ATSimDto.AdminUser
 
         [DataMember(Name = "email")]
         [Required(ErrorMessage = "email不能为空")]
-        [StringLength(50, ErrorMessage = "role长度最大为50位")]
+        [StringLength(50, ErrorMessage = "email长度最大为50位")]
         [EmailAddress(ErrorMessage ="email格式错误")]
         public string Email { get; set; }
 

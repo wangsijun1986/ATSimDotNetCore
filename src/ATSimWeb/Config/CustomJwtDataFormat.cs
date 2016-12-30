@@ -8,7 +8,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace SimpleTokenProvider
+namespace ATSimWeb.Config
 {
     public class CustomJwtDataFormat : ISecureDataFormat<AuthenticationTicket>
     {

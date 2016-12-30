@@ -47,6 +47,7 @@ namespace ATSimWeb
                 .ProtectKeysWithDpapi()
                 .PersistKeysToFileSystem(new DirectoryInfo(Directory.GetCurrentDirectory()));
             new Encryption().CreateProtector(services.BuildServiceProvider().GetDataProtectionProvider());
+            
 
             new InjectionService(services);
             MapperConfiguration.Configuration();

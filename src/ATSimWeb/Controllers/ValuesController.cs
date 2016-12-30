@@ -22,14 +22,12 @@ namespace ATSimWeb.Controllers
 
 
         // GET api/values
-        [Authorize]
+        [Authorize(Roles ="Administrator")]
         [HttpGet]
         public IActionResult Get()
         {
+            string name = HttpContext.User.Identity.Name;
             //return BadRequestWithContent("001001001");
-            string a = HttpContext.Request.Headers["Authorization"];
-            var jwt = new JwtSecurityTokenHandler();
-            string key = jwt.ReadJwtToken(a).Claims.ElementAt(0).Value;
             return new JsonResult(new string[] { "value1", "value2" });
         }
 

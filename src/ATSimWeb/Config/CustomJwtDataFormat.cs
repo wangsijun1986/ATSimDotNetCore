@@ -23,11 +23,13 @@ namespace ATSimWeb.Config
 
         public string Protect(AuthenticationTicket data)
         {
+            Console.WriteLine(data);
             throw new NotImplementedException();
         }
 
         public string Protect(AuthenticationTicket data, string purpose)
         {
+            Console.WriteLine(data);
             throw new NotImplementedException();
         }
 

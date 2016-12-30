@@ -58,15 +58,14 @@ namespace ATSimWeb.Config
 
             // Specifically add the jti (random nonce), iat (issued timestamp), and sub (subject/user) claims.
             // You can add other claims here, if you want:
-            var claims = new Claim[]
-            {
-        new Claim(JwtRegisteredClaimNames.Sub, identity.Claims.ElementAt(0).Value),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64)
-            };
-
-            // Create the JWT and write it to a string
-            var jwt = new JwtSecurityToken(
+            List<Claim> claims = identity.Claims.ToList();
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, username));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(now).ToString(), ClaimValueTypes.Integer64));
+            
+            
+           // Create the JWT and write it to a string
+           var jwt = new JwtSecurityToken(
                 issuer: _options.Issuer,
                 audience: _options.Audience,
                 claims: claims,

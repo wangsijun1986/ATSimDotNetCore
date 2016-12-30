@@ -78,7 +78,10 @@ namespace ATSimWeb
             // Don't do this in production, obviously!
             if (adminUser!=null)
             {
-                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(adminUser.Id.ToString(), "Token"), new Claim[] { }));
+                List<Claim> claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, username));
+                claims.Add(new Claim(ClaimTypes.Role, adminUser.Role));
+                return Task.FromResult(new ClaimsIdentity(new GenericIdentity(adminUser.Id.ToString(), "Token"), claims.ToArray()));
             }
 
             // Credentials are invalid, or account doesn't exist

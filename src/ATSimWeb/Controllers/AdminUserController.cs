@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using ATSimService.AdminUser;
 using ATSimCommon;
 using ATSimDto.AdminUser;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,8 +21,11 @@ namespace ATSimWeb.Controllers
         {
             this.adminUserService = adminUserService;
         }
+
         // GET: api/values
+        [AllowAnonymous]
         [HttpGet(Name ="GetUserInfoByUserNameAndPassword")]
+
         public IActionResult Get(string name,string password)
         {
             return Ok(adminUserService.GetUserInfo(name, password));

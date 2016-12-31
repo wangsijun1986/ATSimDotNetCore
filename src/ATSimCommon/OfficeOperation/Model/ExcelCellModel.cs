@@ -20,9 +20,11 @@ namespace ATSimCommon.OfficeOperation.Model
         private object cellValue;
         public int CellIndex { get; set; }
 
-        public CellValueTypeEnum cellValueType { get; set; }
+        public CellValueTypeEnum CellValueType { get; set; }
 
-        public CellType cellType { get; set; }
+        public CellType CellType { get; set; }
+
+        public string Formula { get; set; }
 
         public object CellValue
         {
@@ -32,7 +34,7 @@ namespace ATSimCommon.OfficeOperation.Model
             }
             set
             {
-                switch (cellValueType)
+                switch (CellValueType)
                 {
                     case CellValueTypeEnum.Tbool:
                         cellValue = (bool)value;

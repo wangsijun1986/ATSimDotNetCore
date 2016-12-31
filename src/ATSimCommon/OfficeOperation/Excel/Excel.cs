@@ -75,8 +75,12 @@ namespace ATSimCommon.OfficeOperation.Excel
             foreach (ExcelCellModel item in rowModel.Cells)
             {
                 ICell cell = row.CreateCell(item.CellIndex);
-                cell.SetCellType(item.cellType);
-                switch (item.cellValueType)
+                if (rowModel.IsFormulaRow)
+                {
+                    cell.CellFormula = item.Formula;
+                }
+                cell.SetCellType(item.CellType);
+                switch (item.CellValueType)
                 {
                     case CellValueTypeEnum.Tbool:
                         cell.SetCellValue((bool)item.CellValue);

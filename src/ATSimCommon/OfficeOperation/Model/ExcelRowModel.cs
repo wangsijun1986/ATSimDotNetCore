@@ -6,17 +6,10 @@ using System.Threading.Tasks;
 
 namespace ATSimCommon.OfficeOperation.Model
 {
-    public class ExcelRowModel
+    public class ExcelRowModel :BasicExcelRowModel
     {
         private IList<ExcelCellModel> cells;
-        public short Height { get; set; }
 
-        public int RowIndex { get; set; }
-
-        public bool IsEmptyRow { get; set; }
-
-        public bool IsHeader { get; set; }
-        
         public IList<ExcelCellModel> Cells
         {
             get
@@ -33,6 +26,6 @@ namespace ATSimCommon.OfficeOperation.Model
             }
         }
 
-        public ICellStyle CellStyle { get; set; }
+        
     }
 }

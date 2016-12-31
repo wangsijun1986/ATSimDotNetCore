@@ -41,11 +41,12 @@ namespace ATSimWeb
             {
                 option.SerializerSettings.ContractResolver = new DefaultContractResolver();
             });
-            //create data encryption configuration.
+            
             services.AddDataProtection()
                 .SetApplicationName("ATSim_DotNetCore")
-                .ProtectKeysWithDpapi()
                 .PersistKeysToFileSystem(new DirectoryInfo(Directory.GetCurrentDirectory()));
+
+            //create data encryption configuration.
             new Encryption().CreateProtector(services.BuildServiceProvider().GetDataProtectionProvider());
             
 

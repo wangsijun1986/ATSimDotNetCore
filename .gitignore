@@ -32,3 +32,10 @@
 /src/ATSimService/obj/Debug/netstandard1.6
 /src/ATSimWeb/bin/Debug/netcoreapp1.0
 /src/ATSimWeb/obj/Debug/netcoreapp1.0
+/src/ATSimWeb/project.lock.json
+/src/ATSimCommon/project.lock.json
+/src/ATSimData/project.lock.json
+/src/ATSimDto/project.lock.json
+/src/ATSimEntity/project.lock.json
+/src/ATSimService/project.lock.json
+/src/MysqlDatabasesScript/project.lock.json

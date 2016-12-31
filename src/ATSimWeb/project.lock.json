@@ -229,21 +229,6 @@
           "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.Internal.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "1.0.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Security.Cryptography.Algorithms": "4.2.0",
-          "System.Text.Encoding.Extensions": "4.0.11"
-        },
-        "compile": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.DataProtection/1.1.0": {
         "type": "package",
         "dependencies": {
@@ -457,35 +442,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Microsoft.AspNetCore.HttpOverrides.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Identity/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "1.0.0",
-          "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
-          "System.Text.RegularExpressions": "4.1.0"
-        },
-        "compile": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.Identity.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.Identity.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNetCore.Identity": "1.0.0",
-          "Microsoft.EntityFrameworkCore.Relational": "1.0.0",
-          "System.ComponentModel.TypeConverter": "4.1.0"
-        },
-        "compile": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
         }
       },
       "Microsoft.AspNetCore.JsonPatch/1.0.0": {
@@ -1032,45 +988,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Microsoft.DotNet.InternalAbstractions.dll": {}
-        }
-      },
-      "Microsoft.EntityFrameworkCore/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Caching.Memory": "1.0.0",
-          "Microsoft.Extensions.DependencyInjection": "1.0.0",
-          "Microsoft.Extensions.Logging": "1.0.0",
-          "Remotion.Linq": "2.1.1",
-          "System.Collections.Concurrent": "4.0.12",
-          "System.Collections.Immutable": "1.2.0",
-          "System.ComponentModel.Annotations": "4.1.0",
-          "System.Interactive.Async": "3.0.0",
-          "System.Linq.Queryable": "4.0.1",
-          "System.ObjectModel": "4.0.12",
-          "System.Reflection.Extensions": "4.0.1",
-          "System.Reflection.TypeExtensions": "4.1.0"
-        },
-        "compile": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.dll": {}
-        }
-      },
-      "Microsoft.EntityFrameworkCore.Relational/1.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.CSharp": "4.0.1",
-          "Microsoft.EntityFrameworkCore": "1.0.0",
-          "System.Data.Common": "4.1.0",
-          "System.Diagnostics.DiagnosticSource": "4.0.0",
-          "System.Text.RegularExpressions": "4.1.0"
-        },
-        "compile": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.dll": {}
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/1.0.0": {
@@ -1951,28 +1868,6 @@
       },
       "OpenCV/2.4.10": {
         "type": "package"
-      },
-      "Remotion.Linq/2.1.1": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Linq": "4.1.0",
-          "System.Linq.Expressions": "4.1.0",
-          "System.Linq.Queryable": "4.0.1",
-          "System.ObjectModel": "4.0.12",
-          "System.Reflection": "4.1.0",
-          "System.Reflection.Extensions": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Threading": "4.0.11"
-        },
-        "compile": {
-          "lib/netstandard1.0/Remotion.Linq.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/Remotion.Linq.dll": {}
-        }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
@@ -2867,25 +2762,6 @@
         },
         "runtime": {
           "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll": {}
-        }
-      },
-      "System.Interactive.Async/3.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Collections": "4.0.11",
-          "System.Diagnostics.Debug": "4.0.11",
-          "System.Linq": "4.1.0",
-          "System.Resources.ResourceManager": "4.0.1",
-          "System.Runtime": "4.1.0",
-          "System.Runtime.Extensions": "4.1.0",
-          "System.Threading": "4.0.11",
-          "System.Threading.Tasks": "4.0.11"
-        },
-        "compile": {
-          "lib/netstandard1.0/System.Interactive.Async.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.0/System.Interactive.Async.dll": {}
         }
       },
       "System.IO/4.3.0": {
@@ -4765,19 +4641,6 @@
         "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.Internal.xml"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/1.0.0": {
-      "sha512": "OUBTk5RS7b3+Q9Z7F1jAL9JzdWlkITNpUw8EO5Yu1sP4Rq2jaidXKLiEw7oKFbD1Wmcee2s+U/UyHQfy/og7Sw==",
-      "type": "package",
-      "path": "Microsoft.AspNetCore.Cryptography.KeyDerivation/1.0.0",
-      "files": [
-        "Microsoft.AspNetCore.Cryptography.KeyDerivation.1.0.0.nupkg.sha512",
-        "Microsoft.AspNetCore.Cryptography.KeyDerivation.nuspec",
-        "lib/net451/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
-        "lib/net451/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
-        "lib/netstandard1.3/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml"
-      ]
-    },
     "Microsoft.AspNetCore.DataProtection/1.1.0": {
       "sha512": "wu8pk94CExaLvwwDSnXkTtsdL8mRxbLH8uCKbbPqbtIstSM6bOw/454OvOYKf61BB+It//ItJJYdZTy2j8Kelw==",
       "type": "package",
@@ -4941,32 +4804,6 @@
         "lib/net451/Microsoft.AspNetCore.HttpOverrides.xml",
         "lib/netstandard1.3/Microsoft.AspNetCore.HttpOverrides.dll",
         "lib/netstandard1.3/Microsoft.AspNetCore.HttpOverrides.xml"
-      ]
-    },
-    "Microsoft.AspNetCore.Identity/1.0.0": {
-      "sha512": "qQXsxDocbx3xMPBVBZ2Es6vw5QalV+z9mGXUPbn/XRbjY1viwQjVToE7BrCanqr7q97ds0ciI2AgQhvny0kkqw==",
-      "type": "package",
-      "path": "Microsoft.AspNetCore.Identity/1.0.0",
-      "files": [
-        "Microsoft.AspNetCore.Identity.1.0.0.nupkg.sha512",
-        "Microsoft.AspNetCore.Identity.nuspec",
-        "lib/net451/Microsoft.AspNetCore.Identity.dll",
-        "lib/net451/Microsoft.AspNetCore.Identity.xml",
-        "lib/netstandard1.3/Microsoft.AspNetCore.Identity.dll",
-        "lib/netstandard1.3/Microsoft.AspNetCore.Identity.xml"
-      ]
-    },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/1.0.0": {
-      "sha512": "+TX5cTpqRqqjWRHM0BHM02pLv0a5jo+Ai73aLQKKqZOZT/GJgvIyTM1sLeY2ybbfNaEzps8AMFb0r3KzRY11yA==",
-      "type": "package",
-      "path": "Microsoft.AspNetCore.Identity.EntityFrameworkCore/1.0.0",
-      "files": [
-        "Microsoft.AspNetCore.Identity.EntityFrameworkCore.1.0.0.nupkg.sha512",
-        "Microsoft.AspNetCore.Identity.EntityFrameworkCore.nuspec",
-        "lib/net451/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
-        "lib/net451/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "lib/netstandard1.3/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
-        "lib/netstandard1.3/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml"
       ]
     },
     "Microsoft.AspNetCore.JsonPatch/1.0.0": {
@@ -5517,32 +5354,6 @@
         "Microsoft.DotNet.InternalAbstractions.nuspec",
         "lib/net451/Microsoft.DotNet.InternalAbstractions.dll",
         "lib/netstandard1.3/Microsoft.DotNet.InternalAbstractions.dll"
-      ]
-    },
-    "Microsoft.EntityFrameworkCore/1.0.0": {
-      "sha512": "Vqg/v0cXRQZQH0gY3VHHqt0Bt5WZEkDReVpI1sNYKHVbVtnMYFKPp5SiNygosUJYrJk1rSGb8UVkplDNNUkEgg==",
-      "type": "package",
-      "path": "Microsoft.EntityFrameworkCore/1.0.0",
-      "files": [
-        "Microsoft.EntityFrameworkCore.1.0.0.nupkg.sha512",
-        "Microsoft.EntityFrameworkCore.nuspec",
-        "lib/net451/Microsoft.EntityFrameworkCore.dll",
-        "lib/net451/Microsoft.EntityFrameworkCore.xml",
-        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.dll",
-        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.xml"
-      ]
-    },
-    "Microsoft.EntityFrameworkCore.Relational/1.0.0": {
-      "sha512": "LGBab+7o0eq4C3YtvkAxK8W7Ia57eO0Ue0viQgt0STptQ2bUpLzV7q5LfbNl475rt6yTWa/vDQlYVaI64fwqdw==",
-      "type": "package",
-      "path": "Microsoft.EntityFrameworkCore.Relational/1.0.0",
-      "files": [
-        "Microsoft.EntityFrameworkCore.Relational.1.0.0.nupkg.sha512",
-        "Microsoft.EntityFrameworkCore.Relational.nuspec",
-        "lib/net451/Microsoft.EntityFrameworkCore.Relational.dll",
-        "lib/net451/Microsoft.EntityFrameworkCore.Relational.xml",
-        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.dll",
-        "lib/netstandard1.3/Microsoft.EntityFrameworkCore.Relational.xml"
       ]
     },
     "Microsoft.Extensions.Caching.Abstractions/1.0.0": {
@@ -6569,25 +6380,6 @@
         "build/native/private/CoApp.NuGetNativeMSBuildTasks.dll.orig",
         "build/native/private/nuget.exe",
         "build/publisher-info.txt"
-      ]
-    },
-    "Remotion.Linq/2.1.1": {
-      "sha512": "IJn0BqkvwEDpP+2qjvci7n4/a9f7DhKESLWb2/uG4xQh3rTkGTBUz69bI4IivCoKkTFAqjXxYDZw2K/npohjsw==",
-      "type": "package",
-      "path": "Remotion.Linq/2.1.1",
-      "files": [
-        "Remotion.Linq.2.1.1.nupkg.sha512",
-        "Remotion.Linq.nuspec",
-        "lib/net35/Remotion.Linq.XML",
-        "lib/net35/Remotion.Linq.dll",
-        "lib/net40/Remotion.Linq.XML",
-        "lib/net40/Remotion.Linq.dll",
-        "lib/net45/Remotion.Linq.XML",
-        "lib/net45/Remotion.Linq.dll",
-        "lib/netstandard1.0/Remotion.Linq.dll",
-        "lib/netstandard1.0/Remotion.Linq.xml",
-        "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.dll",
-        "lib/portable-net45+win+wpa81+wp80/Remotion.Linq.xml"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -8275,19 +8067,6 @@
         "lib/net451/System.IdentityModel.Tokens.Jwt.xml",
         "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.dll",
         "lib/netstandard1.4/System.IdentityModel.Tokens.Jwt.xml"
-      ]
-    },
-    "System.Interactive.Async/3.0.0": {
-      "sha512": "iyrgkZz9Dzm0fiPouQszFC3SO/46k6AYd/jG9bu+/o0AoDMaRXtlo3TIuWVNtOuJFd1noL963QouroJ0T3rImw==",
-      "type": "package",
-      "path": "System.Interactive.Async/3.0.0",
-      "files": [
-        "System.Interactive.Async.3.0.0.nupkg.sha512",
-        "System.Interactive.Async.nuspec",
-        "lib/net45/System.Interactive.Async.dll",
-        "lib/net45/System.Interactive.Async.xml",
-        "lib/netstandard1.0/System.Interactive.Async.dll",
-        "lib/netstandard1.0/System.Interactive.Async.xml"
       ]
     },
     "System.IO/4.3.0": {
@@ -11934,7 +11713,6 @@
       "ATSimService >= 1.0.0-*",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 1.1.0",
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 1.0.0",
       "Microsoft.AspNetCore.Mvc >= 1.0.1",
       "Microsoft.AspNetCore.Mvc.WebApiCompatShim >= 1.0.1",
       "Microsoft.AspNetCore.Routing >= 1.0.1",

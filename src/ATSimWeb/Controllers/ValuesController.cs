@@ -22,7 +22,7 @@ namespace ATSimWeb.Controllers
 
 
         // GET api/values
-        [Authorize(Roles ="Administrator")]
+        [Authorize(Roles ="Admin,Custom")]
         [HttpGet]
         public IActionResult Get()
         {

@@ -19,7 +19,6 @@
 /src/SimpleTokenProvider/bin/Debug/netstandard1.6
 /src/SimpleTokenProvider/obj/Debug/netstandard1.6
 /.vs
-/.vscode
 /src/ATSimCommon/bin/Debug/netstandard1.6
 /src/ATSimCommon/obj/Debug/netstandard1.6
 /src/ATSimData/bin/Debug/netstandard1.6

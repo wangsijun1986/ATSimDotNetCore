@@ -8,6 +8,8 @@ using ATSimDto;
 using ATSimWeb.Config;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
+using ATSimService.OfficeOperation;
+using System.IO;
 
 namespace ATSimWeb.Controllers
 {
@@ -15,23 +17,31 @@ namespace ATSimWeb.Controllers
     public class ValuesController : ATSimApiController
     {
         private readonly IHelloWordService hellowordService;
+        private readonly IExcelOperationService excelOperationService;
         public ValuesController(IHelloWordService service)
         {
-            hellowordService = service;
+            this.hellowordService = service;
+            this.excelOperationService = new ExcelOperationService();
         }
 
 
         // GET api/values
-        [Authorize(Roles ="Admin,Custom")]
         [HttpGet]
         public IActionResult Get()
         {
-            string name = HttpContext.User.Identity.Name;
+            //string name = HttpContext.User.Identity.Name;
             //return BadRequestWithContent("001001001");
+            FileInfo file = new FileInfo(string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "text.xlsx"));
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+            this.excelOperationService.CreateExcel(Directory.GetCurrentDirectory(), "text.xlsx");
             return new JsonResult(new string[] { "value1", "value2" });
         }
 
         // GET api/values/5
+        [Authorize(Roles = "Admin,Custom")]
         [HttpGet("{id}")]
         public string Get(int id)
         {

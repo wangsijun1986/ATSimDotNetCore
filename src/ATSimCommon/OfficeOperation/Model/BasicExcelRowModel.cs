@@ -1,11 +1,10 @@
 ﻿using Npoi.Core.SS.UserModel;
+using Npoi.Core.XSSF.UserModel;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ATSimCommon.OfficeOperation.Model
 {
+    [Serializable]
     public abstract class BasicExcelRowModel
     {
         public string Key { get; set; }
@@ -21,7 +20,6 @@ namespace ATSimCommon.OfficeOperation.Model
         public bool IsDataRow { get; set; }
 
         public bool IsFormulaRow { get; set; }
-
-        public ICellStyle CellStyle { get; set; }
+        
     }
 }

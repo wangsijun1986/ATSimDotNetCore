@@ -4,20 +4,6 @@
 
 /src/MysqlDatabasesScript/obj/Debug/netstandard1.6
 /src/MysqlDatabasesScript/bin/Debug/netstandard1.6
-/src/ChinaMobileSim/bin/Debug/netcoreapp1.0
-/src/ChinaMobileSim/obj/Debug/netcoreapp1.0
-/src/ChinaMobileService/bin/Debug/netstandard1.6
-/src/ChinaMobileService/obj/Debug/netstandard1.6
-/src/ChinaMobileEntity/bin/Debug/netstandard1.6
-/src/ChinaMobileEntity/obj/Debug/netstandard1.6
-/src/ChinaMobileDto/bin/Debug/netstandard1.6
-/src/ChinaMobileDto/obj/Debug/netstandard1.6
-/src/ChinaMobileData/bin/Debug/netstandard1.6
-/src/ChinaMobileData/obj/Debug/netstandard1.6
-/src/ChinaMobileCommon/bin/Debug/netstandard1.6
-/src/ChinaMobileCommon/obj/Debug/netstandard1.6
-/src/SimpleTokenProvider/bin/Debug/netstandard1.6
-/src/SimpleTokenProvider/obj/Debug/netstandard1.6
 /.vs
 /src/ATSimCommon/bin/Debug/netstandard1.6
 /src/ATSimCommon/obj/Debug/netstandard1.6
@@ -38,3 +24,4 @@
 /src/ATSimEntity/project.lock.json
 /src/ATSimService/project.lock.json
 /src/MysqlDatabasesScript/project.lock.json
+/src/ATSimWeb/text.xlsx

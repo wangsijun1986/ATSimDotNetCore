@@ -1,4 +1,6 @@
 ﻿using ATSimCommon.OfficeOperation.Model;
+using Npoi.Core.HSSF.UserModel;
+using Npoi.Core.HSSF.Util;
 using Npoi.Core.SS.UserModel;
 using Npoi.Core.SS.Util;
 using Npoi.Core.XSSF.Model;
@@ -36,7 +38,7 @@ namespace ATSimCommon.OfficeOperation.Excel
             IDictionary<CellRangeAddress, string> cellRanges = new Dictionary<CellRangeAddress, string>();
             foreach (ExcelRowModel item in rows)
             {
-                CreateRow(sheet, item, cellRanges);
+                CreateRow(workbook, sheet, item, cellRanges);
             }
 
             IDictionary<CellRangeAddress, string> ranges = CalCulatCellRange(cellRanges);
@@ -56,7 +58,7 @@ namespace ATSimCommon.OfficeOperation.Excel
         }
 
 
-        private IRow CreateRow(ISheet sheet, ExcelRowModel rowModel, IDictionary<CellRangeAddress, string> cellRanges)
+        private IRow CreateRow(IWorkbook workbook, ISheet sheet, ExcelRowModel rowModel, IDictionary<CellRangeAddress, string> cellRanges)
         {
             if (rowModel.IsEmptyRow)
             {
@@ -64,12 +66,14 @@ namespace ATSimCommon.OfficeOperation.Excel
             }
             IRow row = sheet.CreateRow(rowModel.RowIndex);
             row.Height = rowModel.Height;
-            row.RowStyle = rowModel.CellStyle;
-            CreateCells(row, rowModel, cellRanges);
+            row.RowStyle = workbook.CreateCellStyle();
+            //row.RowStyle.CloneStyleFrom(rowModel.CellStyle);
+
+            CreateCells(workbook, row, rowModel, cellRanges);
             return row;
         }
 
-        private List<ICell> CreateCells(IRow row, ExcelRowModel rowModel, IDictionary<CellRangeAddress, string> cellRanges)
+        private List<ICell> CreateCells(IWorkbook workbook, IRow row, ExcelRowModel rowModel, IDictionary<CellRangeAddress, string> cellRanges)
         {
 
             List<ICell> cellList = new List<ICell>();
@@ -97,22 +101,75 @@ namespace ATSimCommon.OfficeOperation.Excel
                         cell.SetCellValue(item.CellValue.ToString());
                         break;
                 }
-                if (item.IsHeader && item.CellStyle == null)
+                if (item.IsHeader)
                 {
-                    StylesTable styleTable = new StylesTable();
-                    XSSFCellStyle cellStyle = new XSSFCellStyle(styleTable);
-                    cellStyle.FillBackgroundXSSFColor = new XSSFColor(Color.AliceBlue);
-                    XSSFFont font = new XSSFFont();
-                    font.Color = new XSSFColor(Color.DeepSkyBlue).Indexed;
-                    font.IsBold = true;
-                    cellStyle.SetFont(font);
-                    cellStyle.SetVerticalAlignment((short)VerticalAlignment.Center);
-                    ICellStyle style = cellStyle;
-                    cell.CellStyle = item.CellStyle;
+                    //StylesTable styleTable = new StylesTable();
+                    //XSSFCellStyle cellStyle = new XSSFCellStyle(styleTable);
+                    //cellStyle.FillBackgroundXSSFColor = new XSSFColor(Color.AliceBlue);
+                    //cellStyle.FillForegroundXSSFColor = new XSSFColor(Color.Black);
+                    //XSSFFont font = new XSSFFont();
+                    //font.Color = new XSSFColor(Color.DeepSkyBlue).Indexed;
+                    //font.IsBold = true;
+                    //cellStyle.SetFont(font);
+                    //cellStyle.SetVerticalAlignment((short)VerticalAlignment.Center);
+                    //ICellStyle style = cellStyle;
+
+                    cell.CellStyle = workbook.CreateCellStyle();
+                    
+                    IFont font = workbook.CreateFont();
+                    font.IsBold = item.Font.IsBold;
+                    font.Color = item.Font.Color;
+                    
+                    cell.CellStyle.FillBackgroundColor = item.CellStyle.FillBackgroundColor;
+                    cell.CellStyle.FillForegroundColor = item.CellStyle.FillForegroundColor;
+                    cell.CellStyle.FillPattern = item.CellStyle.FillPattern;
+                    cell.CellStyle.BorderBottom = item.CellStyle.BorderBottom;
+                    cell.CellStyle.BorderLeft = item.CellStyle.BorderLeft;
+                    cell.CellStyle.BorderRight = item.CellStyle.BorderRight;
+                    cell.CellStyle.BorderTop = item.CellStyle.BorderTop;
+                    cell.CellStyle.Alignment = item.CellStyle.Alignment;
+                    cell.CellStyle.VerticalAlignment = item.CellStyle.VerticalAlignment;
+                    cell.CellStyle.WrapText = item.CellStyle.WrapText;
+                    cell.CellStyle.TopBorderColor = item.CellStyle.TopBorderColor;
+                    cell.CellStyle.LeftBorderColor = item.CellStyle.LeftBorderColor;
+                    cell.CellStyle.RightBorderColor = item.CellStyle.RightBorderColor;
+                    cell.CellStyle.BottomBorderColor = item.CellStyle.BottomBorderColor;
+                    cell.CellStyle.DataFormat = item.CellStyle.DataFormat;
+                    cell.CellStyle.IsLocked = item.CellStyle.IsLocked;
+                    cell.CellStyle.IsHidden = item.CellStyle.IsHidden;
+                    cell.CellStyle.Indention = item.CellStyle.Indention;
+                    cell.CellStyle.Rotation = item.CellStyle.Rotation;
+                    cell.CellStyle.ShrinkToFit = item.CellStyle.ShrinkToFit;
+                    cell.CellStyle.SetFont(font);
                 }
                 else
                 {
-                    cell.CellStyle = item.CellStyle;
+                    cell.CellStyle = workbook.CreateCellStyle();
+                    IFont font = workbook.CreateFont();
+                    font.IsBold = item.Font.IsBold;
+                    font.Color = item.Font.Color;
+
+                    cell.CellStyle.FillBackgroundColor = item.CellStyle.FillBackgroundColor;
+                    cell.CellStyle.FillForegroundColor = item.CellStyle.FillForegroundColor;
+                    cell.CellStyle.FillPattern = item.CellStyle.FillPattern;
+                    cell.CellStyle.BorderBottom = item.CellStyle.BorderBottom;
+                    cell.CellStyle.BorderLeft = item.CellStyle.BorderLeft;
+                    cell.CellStyle.BorderRight = item.CellStyle.BorderRight;
+                    cell.CellStyle.BorderTop = item.CellStyle.BorderTop;
+                    cell.CellStyle.Alignment = item.CellStyle.Alignment;
+                    cell.CellStyle.VerticalAlignment = item.CellStyle.VerticalAlignment;
+                    cell.CellStyle.WrapText = item.CellStyle.WrapText;
+                    cell.CellStyle.TopBorderColor = item.CellStyle.TopBorderColor;
+                    cell.CellStyle.LeftBorderColor = item.CellStyle.LeftBorderColor;
+                    cell.CellStyle.RightBorderColor = item.CellStyle.RightBorderColor;
+                    cell.CellStyle.BottomBorderColor = item.CellStyle.BottomBorderColor;
+                    cell.CellStyle.DataFormat = item.CellStyle.DataFormat;
+                    cell.CellStyle.IsLocked = item.CellStyle.IsLocked;
+                    cell.CellStyle.IsHidden = item.CellStyle.IsHidden;
+                    cell.CellStyle.Indention = item.CellStyle.Indention;
+                    cell.CellStyle.Rotation = item.CellStyle.Rotation;
+                    cell.CellStyle.ShrinkToFit = item.CellStyle.ShrinkToFit;
+                    cell.CellStyle.SetFont(font);
                 }
                 if (item.IsRangeCell)
                 {

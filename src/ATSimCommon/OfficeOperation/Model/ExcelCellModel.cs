@@ -15,6 +15,7 @@ namespace ATSimCommon.OfficeOperation.Model
         TString,
         THSSFRichTextString
     }
+    [Serializable]
     public class ExcelCellModel
     {
         private object cellValue;
@@ -37,13 +38,13 @@ namespace ATSimCommon.OfficeOperation.Model
                 switch (CellValueType)
                 {
                     case CellValueTypeEnum.Tbool:
-                        cellValue = (bool)value;
+                        cellValue = Boolean.Parse(value.ToString());
                         break;
                     case CellValueTypeEnum.TDateTime:
-                        cellValue = (DateTime)value;
+                        cellValue = DateTime.Parse(value.ToString());
                         break;
                     case CellValueTypeEnum.Tdouble:
-                        cellValue = (double)value;
+                        cellValue = Double.Parse(value.ToString());
                         break;
                     case CellValueTypeEnum.TString:
                     case CellValueTypeEnum.THSSFRichTextString:
@@ -62,5 +63,7 @@ namespace ATSimCommon.OfficeOperation.Model
         public CellRangeAddress CellRangePoint { get; set; }
 
         public ICellStyle CellStyle { get; set; }
+
+        public IFont Font { get; set; }
     }
 }

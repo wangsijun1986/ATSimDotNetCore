@@ -106,7 +106,6 @@ namespace ATSimService.OfficeOperation.Operation
                 if (item.IsHeader)
                 {
                     rows.Add(CreateHeader(item, ref rowIndex));
-
                 }
                 else if(item.IsDataRow)
                 {
@@ -125,7 +124,7 @@ namespace ATSimService.OfficeOperation.Operation
             header.IsHeader = template.IsHeader;
             header.Key = template.Key;
             header.RowIndex = rowIndex++;
-            header.CellStyle = template.CellStyle;
+            //header.CellStyle = template.CellStyle;
             header.Cells = CreateHederCells(template);
             return header;
         }
@@ -139,9 +138,10 @@ namespace ATSimService.OfficeOperation.Operation
                 ExcelCellModel cell = new ExcelCellModel();
                 cell.CellIndex = cellIndex++;
                 cell.CellType = (CellType)template.CellTypeTemplate[item.Key];
+                cell.CellValueType = CellValueTypeEnum.THSSFRichTextString;
                 cell.CellValue = item.Value;
-                cell.CellStyle = template.CellStyle;
-                cell.CellValueType = (CellValueTypeEnum)template.CellValueTypeTemplate[item.Key];
+                cell.CellStyle = template.CellStyle[item.Key];
+                cell.Font = template.CellFont[item.Key];
                 cell.IsHeader = template.IsHeader;
                 cells.Add(cell);
             }
@@ -157,10 +157,10 @@ namespace ATSimService.OfficeOperation.Operation
             {
                 ExcelRowModel row = new ExcelRowModel();
                 row.Height = template.Height;
-                row.IsDataRow = template.IsDataRow;
+                row.IsDataRow = true;
                 row.Key = template.Key;
                 row.RowIndex = rowIndex++;
-                row.CellStyle = template.CellStyle;
+                //row.CellStyle = template.CellStyle;
                 row.Cells = CreateDataCells(item, template);
                 rows.Add(row);
             }
@@ -175,10 +175,11 @@ namespace ATSimService.OfficeOperation.Operation
                 ExcelCellModel cell = new ExcelCellModel();
                 cell.CellIndex = cellIndex++;
                 cell.CellType = (CellType)template.CellTypeTemplate[item.Key];
-                cell.CellValue = data[item.Key];
-                cell.CellStyle = template.CellStyle;
                 cell.CellValueType = (CellValueTypeEnum)template.CellValueTypeTemplate[item.Key];
-                cell.IsHeader = false;
+                cell.CellValue = data[item.Key];
+                cell.CellStyle = template.CellStyle[item.Key];
+                cell.Font = template.CellFont[item.Key];
+                cell.IsHeader = template.IsHeader;
                 cells.Add(cell);
             }
             return cells;

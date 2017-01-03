@@ -7,6 +7,7 @@ using ATSimService.AdminUser;
 using ATSimCommon;
 using ATSimDto.AdminUser;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json.Linq;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +36,9 @@ namespace ATSimWeb.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            return Ok(adminUserService.GetUserInfo(id));
+            //return Ok(adminUserService.GetUserInfo(id));
+            Dictionary<string,string> dic = JObject.FromObject(adminUserService.GetUserInfo(id)).ToObject<Dictionary<string, string>>();
+            return Json(dic);
         }
 
         // POST api/values

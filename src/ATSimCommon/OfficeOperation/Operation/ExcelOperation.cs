@@ -1,5 +1,7 @@
 using ATSimCommon.OfficeOperation.Excel;
 using ATSimCommon.OfficeOperation.Model;
+using ATSimCommon.OfficeOperation.Operation;
+using Newtonsoft.Json.Linq;
 using Npoi.Core.SS.UserModel;
 using System;
 using System.Collections.Generic;
@@ -15,8 +17,18 @@ namespace ATSimService.OfficeOperation.Operation
             excel = new Excel();
         }
 
+        public void CreateExcel<T>(string directPath, string filePath, string sheetName, IEnumerable<T> data , List<ExcelRowModelDefaultTemplate> excelTemplate) {
+            ExcelModelTemplateTransform transform = new ExcelModelTemplateTransform();
+            IEnumerable<ExcelRowModelTemplate> templates = transform.TransformExcelRowModelTemplate(excelTemplate);
+            IEnumerable<Dictionary<string,string>> excelData = JObject.FromObject(data).ToObject<IEnumerable<Dictionary<string, string>>>();
+            IDictionary<string, IEnumerable<IDictionary<string, string>>> objectData = new Dictionary<string, IEnumerable<IDictionary<string, string>>>();
+            objectData.Add(templates.FirstOrDefault().Key,excelData);
+            
+            TestCreateExcel(directPath, filePath, sheetName, objectData, templates);
+        }
+
         #region Create Excel
-        public void CreateExcel(string directPath, string filePath,string sheetName, IDictionary<string, IEnumerable<IDictionary<string,string>>> excelData, IEnumerable<ExcelRowModelTemplate> excelTemplate)
+        public void TestCreateExcel(string directPath, string filePath,string sheetName, IDictionary<string, IEnumerable<IDictionary<string,string>>> excelData, IEnumerable<ExcelRowModelTemplate> excelTemplate)
         {
             if (string.IsNullOrWhiteSpace(directPath))
             {

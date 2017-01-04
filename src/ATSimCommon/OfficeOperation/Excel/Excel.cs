@@ -80,40 +80,32 @@ namespace ATSimCommon.OfficeOperation.Excel
             foreach (ExcelCellModel item in rowModel.Cells)
             {
                 ICell cell = row.CreateCell(item.CellIndex);
-                if (rowModel.IsFormulaRow)
+                if (item.IsFormula)
                 {
-                    cell.CellFormula = item.Formula;
+                    cell.SetCellFormula(item.Formula);
                 }
-                cell.SetCellType(item.CellType);
-                switch (item.CellValueType)
+                else
                 {
-                    case CellValueTypeEnum.Tbool:
-                        cell.SetCellValue((bool)item.CellValue);
-                        break;
-                    case CellValueTypeEnum.TDateTime:
-                        cell.SetCellValue((DateTime)item.CellValue);
-                        break;
-                    case CellValueTypeEnum.Tdouble:
-                        cell.SetCellValue((double)item.CellValue);
-                        break;
-                    case CellValueTypeEnum.TString:
-                    case CellValueTypeEnum.THSSFRichTextString:
-                        cell.SetCellValue(item.CellValue.ToString());
-                        break;
+                    cell.SetCellType(item.CellType);
+                    switch (item.CellValueType)
+                    {
+                        case CellValueTypeEnum.Tbool:
+                            cell.SetCellValue((bool)item.CellValue);
+                            break;
+                        case CellValueTypeEnum.TDateTime:
+                            cell.SetCellValue((DateTime)item.CellValue);
+                            break;
+                        case CellValueTypeEnum.Tdouble:
+                            cell.SetCellValue((double)item.CellValue);
+                            break;
+                        case CellValueTypeEnum.TString:
+                        case CellValueTypeEnum.THSSFRichTextString:
+                            cell.SetCellValue(item.CellValue.ToString());
+                            break;
+                    }
                 }
                 if (item.IsHeader)
                 {
-                    //StylesTable styleTable = new StylesTable();
-                    //XSSFCellStyle cellStyle = new XSSFCellStyle(styleTable);
-                    //cellStyle.FillBackgroundXSSFColor = new XSSFColor(Color.AliceBlue);
-                    //cellStyle.FillForegroundXSSFColor = new XSSFColor(Color.Black);
-                    //XSSFFont font = new XSSFFont();
-                    //font.Color = new XSSFColor(Color.DeepSkyBlue).Indexed;
-                    //font.IsBold = true;
-                    //cellStyle.SetFont(font);
-                    //cellStyle.SetVerticalAlignment((short)VerticalAlignment.Center);
-                    //ICellStyle style = cellStyle;
-
                     cell.CellStyle = workbook.CreateCellStyle();
                     
                     IFont font = workbook.CreateFont();
@@ -171,6 +163,7 @@ namespace ATSimCommon.OfficeOperation.Excel
                     cell.CellStyle.ShrinkToFit = item.CellStyle.ShrinkToFit;
                     cell.CellStyle.SetFont(font);
                 }
+
                 if (item.IsRangeCell)
                 {
                     cellRanges.Add(new CellRangeAddress(rowModel.RowIndex, rowModel.RowIndex, item.CellIndex, item.CellIndex), item.CellValue.ToString());

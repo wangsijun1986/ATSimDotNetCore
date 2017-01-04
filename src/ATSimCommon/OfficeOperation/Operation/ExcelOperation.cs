@@ -113,7 +113,9 @@ namespace ATSimService.OfficeOperation.Operation
         {
             List<ExcelRowModel> rows = new List<ExcelRowModel>();
             int rowIndex = 0;
-            foreach(var item in excelTemplate)
+            int dataStart = 0;
+            int dataEnd = 0;
+            foreach (var item in excelTemplate)
             {
                 if (item.IsHeader)
                 {
@@ -121,10 +123,92 @@ namespace ATSimService.OfficeOperation.Operation
                 }
                 else if(item.IsDataRow)
                 {
+                    dataStart = rowIndex;
                     rows.AddRange(CreateDataRows(item, excelData[item.Key], ref rowIndex));
+                    dataEnd = rowIndex - 1;
+                }
+                else if (item.IsFormulaRow)
+                {
+                    rows.Add(CreateFormula(item, dataStart, dataEnd, ref rowIndex));
+                }
+                else if (item.IsEmptyRow)
+                {
+
                 }
             }
             return rows;
+        }
+        #endregion
+        #region Create Excel Empty Row Area
+        #region Create Excel Header Area
+        private ExcelRowModel CreateEmptyRow(ExcelRowModelTemplate template, ref int rowIndex)
+        {
+            ExcelRowModel header = new ExcelRowModel();
+            header.Height = template.Height;
+            header.IsHeader = template.IsHeader;
+            header.Key = template.Key;
+            header.RowIndex = rowIndex++;
+            header.Cells = CreateEmptyRowCells(template);
+            return header;
+        }
+
+        private List<ExcelCellModel> CreateEmptyRowCells(ExcelRowModelTemplate template)
+        {
+            List<ExcelCellModel> cells = new List<ExcelCellModel>();
+            int cellIndex = 0;
+            foreach (KeyValuePair<string, string> item in template.CellTemplate)
+            {
+                ExcelCellModel cell = new ExcelCellModel();
+                cell.CellIndex = cellIndex++;
+                cell.CellType = CellType.String;
+                cell.CellValueType = CellValueTypeEnum.TString;
+                cell.CellValue = "";
+                cell.CellStyle = template.CellStyle[item.Key];
+                cell.Font = template.CellFont[item.Key];
+                cell.IsEmpty = template.IsEmptyRow;
+                cells.Add(cell);
+            }
+            return cells;
+        }
+        #endregion
+        #endregion
+        #region Create Excel Formula Area
+        private ExcelRowModel CreateFormula(ExcelRowModelTemplate template, int rowStart, int rowEnd, ref int rowIndex)
+        {
+            ExcelRowModel formula = new ExcelRowModel();
+            formula.Height = template.Height;
+            formula.IsFormulaRow = template.IsFormulaRow;
+            formula.Key = template.Key;
+            formula.RowIndex = rowIndex++;
+            formula.Cells = CreateFormulaCells(template,rowStart,rowEnd);
+            return formula;
+        }
+        private List<ExcelCellModel> CreateFormulaCells(ExcelRowModelTemplate template,int rowStart,int rowEnd)
+        {
+            List<ExcelCellModel> cells = new List<ExcelCellModel>();
+            int cellIndex = 0;
+            foreach (KeyValuePair<string, string> item in template.CellTemplate)
+            {
+                ExcelCellModel cell = new ExcelCellModel();
+                cell.CellIndex = cellIndex++;
+                cell.CellType = (CellType)template.CellTypeTemplate[item.Key];
+                cell.CellValueType = (CellValueTypeEnum)template.CellValueTypeTemplate[item.Key];
+                if (string.IsNullOrWhiteSpace(item.Value))
+                {
+                    cell.IsEmpty = true;
+                    cell.CellValue = item.Value;
+                }
+                else
+                {
+                    cell.IsFormula = template.IsFormulaRow;
+                    /// ToDo::The formula can be extension in the future.
+                    cell.Formula = string.Format(item.Value,rowStart+1,rowEnd+1);
+                }
+                cell.CellStyle = template.CellStyle[item.Key];
+                cell.Font = template.CellFont[item.Key];
+                cells.Add(cell);
+            }
+            return cells;
         }
         #endregion
 
@@ -136,7 +220,6 @@ namespace ATSimService.OfficeOperation.Operation
             header.IsHeader = template.IsHeader;
             header.Key = template.Key;
             header.RowIndex = rowIndex++;
-            //header.CellStyle = template.CellStyle;
             header.Cells = CreateHederCells(template);
             return header;
         }
@@ -187,11 +270,28 @@ namespace ATSimService.OfficeOperation.Operation
                 ExcelCellModel cell = new ExcelCellModel();
                 cell.CellIndex = cellIndex++;
                 cell.CellType = (CellType)template.CellTypeTemplate[item.Key];
-                cell.CellValueType = (CellValueTypeEnum)template.CellValueTypeTemplate[item.Key];
-                cell.CellValue = data[item.Key];
+                
                 cell.CellStyle = template.CellStyle[item.Key];
                 cell.Font = template.CellFont[item.Key];
-                cell.IsHeader = template.IsHeader;
+
+                if (template.IsDataRow)
+                {
+                    cell.IsData = template.IsDataRow;
+                    cell.CellValueType = (CellValueTypeEnum)template.CellValueTypeTemplate[item.Key];
+                    cell.CellValue = data[item.Key];
+                }
+                else if (template.IsFormulaRow)
+                {
+                    cell.IsFormula = template.IsFormulaRow;
+                    /// ToDo::The formula can be extension in the future.
+                    cell.Formula = item.Value.Replace("{0}",cellIndex.ToString());
+                }
+                else if (template.IsEmptyRow)
+                {
+                    cell.CellValueType = CellValueTypeEnum.TString;
+                    cell.CellValue = "";
+                    cell.IsData = true;
+                }
                 cells.Add(cell);
             }
             return cells;

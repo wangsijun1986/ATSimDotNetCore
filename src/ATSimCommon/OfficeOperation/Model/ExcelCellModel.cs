@@ -58,6 +58,12 @@ namespace ATSimCommon.OfficeOperation.Model
 
         public bool IsHeader { get; set; }
 
+        public bool IsFormula { get; set; }
+
+        public bool IsEmpty { get; set; }
+
+        public bool IsData { get; set; }
+
         public bool IsRangeCell { get; set; } = false;
 
         public CellRangeAddress CellRangePoint { get; set; }

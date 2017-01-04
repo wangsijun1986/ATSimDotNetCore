@@ -18,14 +18,17 @@ namespace ATSimService.OfficeOperation
     {
         private ExcelOperation excel = new ExcelOperation();
 
-        private List<ExcelRowModelDefaultTemplate> TestDataGetExcelRowModelTemplate(string rowKey,bool isHeader,bool isBold,short foregroundColor, short backgroundColor) {
+        private List<ExcelRowModelDefaultTemplate> TestDataGetExcelRowModelTemplate(string rowKey,bool isHeader,bool isData,bool isFormula,bool isEmpty, bool isBold,short foregroundColor, short backgroundColor) {
             List<ExcelRowModelDefaultTemplate> templates = new List<ExcelRowModelDefaultTemplate>();
             templates.Add(new ExcelRowModelDefaultTemplate()
             {
                 RowKey = rowKey,
                 IsHeader = isHeader,
+                IsData = isData,
+                IsFormula = isFormula,
+                IsEmpty = isEmpty,
                 Key = "name",
-                Value = "名称",
+                Value = isFormula?"":"名称",
                 CellType = (int)CellType.String,
                 CellValueType = (int)CellValueTypeEnum.TString,
                 FontColor = new Black().Indexed,
@@ -38,10 +41,13 @@ namespace ATSimService.OfficeOperation
             {
                 RowKey = rowKey,
                 IsHeader = isHeader,
+                IsData = isData,
+                IsFormula = isFormula,
+                IsEmpty = isEmpty,
                 Key = "age",
-                Value = "年龄",
+                Value = isFormula?"SUM(B{0}:B{1})" : "年龄",
                 CellType = (int)CellType.String,
-                CellValueType = (int)CellValueTypeEnum.TString,
+                CellValueType = (int)CellValueTypeEnum.Tdouble,
                 FontColor = new Black().Indexed,
                 FontBoldWeight = (short)FontBoldWeight.Bold,
                 FontIsBold = isBold,
@@ -52,8 +58,11 @@ namespace ATSimService.OfficeOperation
             {
                 RowKey = rowKey,
                 IsHeader = isHeader,
+                IsData = isData,
+                IsFormula = isFormula,
+                IsEmpty = isEmpty,
                 Key = "password",
-                Value = "密码",
+                Value = isFormula ? "" : "密码",
                 CellType = (int)CellType.String,
                 CellValueType = (int)CellValueTypeEnum.TString,
                 FontColor = new Black().Indexed,
@@ -66,8 +75,11 @@ namespace ATSimService.OfficeOperation
             {
                 RowKey = rowKey,
                 IsHeader = isHeader,
+                IsData = isData,
+                IsFormula = isFormula,
+                IsEmpty = isEmpty,
                 Key = "isAdmin",
-                Value = "管理员",
+                Value = isFormula ? "" : "管理员",
                 CellType = (int)CellType.String,
                 CellValueType = (int)CellValueTypeEnum.TString,
                 FontColor = new Black().Indexed,
@@ -80,8 +92,11 @@ namespace ATSimService.OfficeOperation
             {
                 RowKey = rowKey,
                 IsHeader = isHeader,
+                IsData = isData,
+                IsFormula = isFormula,
+                IsEmpty = isEmpty,
                 Key = "createTime",
-                Value = "创建时间",
+                Value = isFormula ? "" : "创建时间",
                 CellType = (int)CellType.String,
                 CellValueType = (int)CellValueTypeEnum.TString,
                 FontColor = new Black().Indexed,
@@ -94,10 +109,13 @@ namespace ATSimService.OfficeOperation
             {
                 RowKey = rowKey,
                 IsHeader = isHeader,
+                IsData = isData,
+                IsFormula = isFormula,
+                IsEmpty = isEmpty,
                 Key = "content",
-                Value = "内容",
+                Value = isFormula ? "" : "内容",
                 CellType = (int)CellType.String,
-                CellValueType = (int)CellValueTypeEnum.TString,
+                CellValueType = (int)CellValueTypeEnum.THSSFRichTextString,
                 FontColor = new Black().Indexed,
                 FontBoldWeight = (short)FontBoldWeight.Bold,
                 FontIsBold = isBold,
@@ -113,9 +131,11 @@ namespace ATSimService.OfficeOperation
 
             IDictionary<string,IEnumerable<IDictionary<string,string>>> excelData = new Dictionary<string,IEnumerable<IDictionary<string,string>>>();
             
-            List<ExcelRowModelDefaultTemplate> row = TestDataGetExcelRowModelTemplate("one",true,true,new BlueGrey().Indexed, new White().Indexed);
-            List<ExcelRowModelDefaultTemplate> rowTwo = TestDataGetExcelRowModelTemplate("oneData",false,false,new White().Indexed, new White().Indexed);
+            List<ExcelRowModelDefaultTemplate> row = TestDataGetExcelRowModelTemplate("one",true,false,false,false,true,new BlueGrey().Indexed, new White().Indexed);
+            List<ExcelRowModelDefaultTemplate> rowTwo = TestDataGetExcelRowModelTemplate("oneData",false, true, false, false, false,new White().Indexed, new White().Indexed);
+            List<ExcelRowModelDefaultTemplate> rowThree = TestDataGetExcelRowModelTemplate("oneFormula", false, false,true, false, false, new White().Indexed, new White().Indexed);
             row.AddRange(rowTwo);
+            row.AddRange(rowThree);
             ExcelModelTemplateTransform transform = new ExcelModelTemplateTransform();
             IEnumerable<ExcelRowModelTemplate> excelTemplate = transform.TransformExcelRowModelTemplate(row);
 

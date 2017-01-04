@@ -44,7 +44,10 @@ namespace ATSimCommon.OfficeOperation.Operation
                     AddExcelRowModelTemplate(row, item);
                 }
                 row.IsHeader = templates.FirstOrDefault().IsHeader;
-                row.IsDataRow = !row.IsHeader;
+                row.IsDataRow = templates.FirstOrDefault().IsData;
+                row.IsFormulaRow = templates.FirstOrDefault().IsFormula;
+                row.IsEmptyRow = templates.FirstOrDefault().IsEmpty;
+
                 row.Key = templates.FirstOrDefault().RowKey;
             }
             return row;

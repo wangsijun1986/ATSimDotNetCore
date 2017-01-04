@@ -10,6 +10,9 @@ namespace ATSimCommon.OfficeOperation.Model
     {
         public string RowKey { get; set; }
         public bool IsHeader { get; set; }
+        public bool IsData { get; set; }
+        public bool IsEmpty { get; set; }
+        public bool IsFormula { get; set; }
         public string Key { get; set; }
         public string Value { get; set; }
         public int CellType { get; set; }

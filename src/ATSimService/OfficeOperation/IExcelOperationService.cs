@@ -8,6 +8,6 @@ namespace ATSimService.OfficeOperation
 {
     public interface IExcelOperationService
     {
-        void CreateExcel(string directPath, string filePath);
+        string CreateExcel(string directPath, string filePath);
     }
 }

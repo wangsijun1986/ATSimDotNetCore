@@ -36,8 +36,16 @@ namespace ATSimWeb.Controllers
             {
                 file.Delete();
             }
-            this.excelOperationService.CreateExcel(Directory.GetCurrentDirectory(), "text.xlsx");
-            return new JsonResult(new string[] { "value1", "value2" });
+            string value = this.excelOperationService.CreateExcel(Directory.GetCurrentDirectory(), "text.xlsx");
+            //return new JsonResult(new string[] { "value1", "value2" });
+            using (FileStream fs = new FileStream(string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "template.txt"), FileMode.CreateNew))
+            {
+                using (StreamWriter sw = new StreamWriter(fs))
+                {
+                    sw.WriteLine(value);
+                }
+            }
+            return Ok(value);
         }
 
         // GET api/values/5

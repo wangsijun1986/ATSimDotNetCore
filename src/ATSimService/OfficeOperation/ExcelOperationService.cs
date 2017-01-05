@@ -11,6 +11,7 @@ using Npoi.Core.HSSF.Util;
 using Npoi.Core.HSSF.Record;
 using static Npoi.Core.HSSF.Util.HSSFColor;
 using ATSimCommon.OfficeOperation.Operation;
+using Newtonsoft.Json.Linq;
 
 namespace ATSimService.OfficeOperation
 {
@@ -125,7 +126,7 @@ namespace ATSimService.OfficeOperation
             return templates;
         }
 
-        public void CreateExcel(string directPath, string filePath)
+        public string CreateExcel(string directPath, string filePath)
         {
             string sheetName = "Test Sheet";
 
@@ -161,6 +162,9 @@ namespace ATSimService.OfficeOperation
             excelData.Add("oneData", data);
             
             excel.TestCreateExcel(directPath, filePath, sheetName, excelData, excelTemplate);
+            Dictionary<string, IEnumerable<ExcelRowModelDefaultTemplate>> rowdic = new Dictionary<string, IEnumerable<ExcelRowModelDefaultTemplate>>();
+            rowdic.Add("template", row);
+            return JObject.FromObject(rowdic).ToString();
         }
     }
 }

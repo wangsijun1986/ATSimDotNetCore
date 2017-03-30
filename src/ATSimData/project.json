@@ -4,6 +4,7 @@
   "dependencies": {
     "ATSimEntity": "1.0.0-*",
     "Dapper": "1.50.2",
+    "MongoDB.Driver": "2.4.3",
     "MySql.Data": "7.0.6-IR31",
     "NETStandard.Library": "1.6.0"
   },

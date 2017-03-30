@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using ATSimService.Location;
+using ATSimEntity.LocationEntities;
+
+// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace ATSimWeb.Controllers
+{
+    [Route("api/[controller]")]
+    public class LocationController : ATSimApiController
+    {
+        private ILocationService locationService;
+        public LocationController(ILocationService locationService)
+        {
+            this.locationService = locationService;
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var result = locationService.GetNearByCarLocation(new float[] { 129.4905f, 31.2646f });
+            return Json(result);
+        }
+        [HttpPost]
+        public IActionResult Post()
+        {
+            LocationEntity entity = new LocationEntity();
+            entity.CarId = 1;
+            entity.Coordinate = new float[] { 129.4915f, 31.2646f };
+            entity.CarNumber = "陕A78878";
+            return Ok(locationService.InsertCarLocation(entity));
+        }
+
+        [HttpPut]
+        public IActionResult Put()
+        {
+            LocationEntity entity = new LocationEntity();
+            entity.CarId = 1;
+            entity.Coordinate = new float[] { 329.4915f, 31.2646f };
+            entity.CarNumber = "陕A55555";
+            locationService.UpdateCarLocation(entity);
+            return Ok();
+        }
+    }
+}

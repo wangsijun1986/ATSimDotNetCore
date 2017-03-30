@@ -20,7 +20,7 @@ namespace ATSimData
         }
         public string GetData(UserEntity user)
         {
-            //These code is used to throw a mysql exception which to the test global exception attribute tag whether normal working.
+            //These code is used to test global exception attribute.
             DynamicParameters paramtere = new DynamicParameters();
             paramtere.Add("?username", user.UserName, DbType.AnsiString);
             paramtere.Add("?url", user.Url, DbType.AnsiString);
@@ -30,7 +30,7 @@ namespace ATSimData
 
             //Task<UserEntity> task = command.QueryEntityAsync<UserEntity>("select * from user", CommandType.Text);
             //TaskAwaiter<UserEntity> awaiter = task.GetAwaiter();
-            //if (awaiter.IsCompleted&&awaiter.IsCompleted)
+            //if (awaiter.IsCompleted)
             //{
             //    Console.WriteLine("Starting wait");
             //    Console.WriteLine(DateTime.Now.ToFileTime().ToString());
@@ -42,7 +42,7 @@ namespace ATSimData
             //Console.WriteLine(DateTime.Now.ToFileTime().ToString());
             //UserEntity entity = awaiter.GetResult()?? new UserEntity();
             //throw new ArgumentException("test argumentException");
-            return "new data HelloWord: user name =" + result.ToString();
+            return result.ToString();
         }
     }
 }

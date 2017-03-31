@@ -37,7 +37,7 @@ namespace ATSimService.Location
         public void UpdateCarLocation(LocationEntity entity)
         {
             var builder = Builders<LocationEntity>.Update
-                .Set("Coordinate", entity.Coordinate);
+                .Set(x=>x.Coordinate, entity.Coordinate);
             locationData.UpdateCarLocation(entity, builder);
         }
 

@@ -39,9 +39,9 @@ namespace ATSimWeb.Controllers
         public IActionResult Put()
         {
             LocationEntity entity = new LocationEntity();
-            entity.CarId = 1;
-            entity.Coordinate = new double[] { 329.4915, 31.2646 };
-            entity.CarNumber = "陕A55555";
+            entity.CarId = 2;
+            entity.Coordinate = new double[] { 109.4915, 51.2646 };
+            entity.CarNumber = "陕A75555";
             locationService.UpdateCarLocation(entity);
             return Ok();
         }

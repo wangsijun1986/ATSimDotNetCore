@@ -23,7 +23,7 @@ namespace ATSimData.MongoData
         }
 
         public IEnumerable<LocationEntity> SelectMoreLocationNear(double[] location) {
-            var filter = Builders<LocationEntity>.Filter.Near(x => x.Coordinate, location[0], location[1]);
+            var filter = Builders<LocationEntity>.Filter.Near(x => x.Coordinate, location[0], location[1],3);
             LocationEntity entity = new LocationEntity();
             entity.CarId = 1;
             entity.Coordinate = new double[] { 129.4915, 31.2646 };

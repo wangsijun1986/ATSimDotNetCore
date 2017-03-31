@@ -17,7 +17,7 @@ namespace ATSimService.Location
             this.locationData = locationData;
         }
 
-        public IEnumerable<LocationEntity> GetNearByCarLocation(float[] location)
+        public IEnumerable<LocationEntity> GetNearByCarLocation(double[] location)
         {
             //Task<IEnumerable<LocationEntity>> result = locationData.GetNearByCarLocation(location);
             //TaskAwaiter<IEnumerable<LocationEntity>> awaiter = result.GetAwaiter();

@@ -58,9 +58,9 @@ namespace ATSimData
             
             return await collection.Find(func).ToListAsync();
         }
-        public IFindFluent<T,T> SelectMoreLocationNear(Expression<Func<T, object>> func, FilterDefinitionBuilder<T> builder,double x,double y)
+        public async Task<IEnumerable<T>> SelectMoreLocationNear(FilterDefinition<T> builder)
         {
-            return collection.Find(builder.Near(func, x, y));
+            return await collection.Find(builder).ToListAsync();
         }
         public async Task<T> SelectOneAndUpdate(Expression<Func<T,bool>> func,UpdateDefinition<T> documents)
         {

@@ -16,22 +16,23 @@ namespace ATSimData.MongoData
             this.mongoCommand = new MongoDBCommand<LocationEntity>("Location");
         }
 
-        public async Task<IEnumerable<LocationEntity>> GetNearByCarLocation(float[] location)
+        public async Task<IEnumerable<LocationEntity>> GetNearByCarLocation(double[] location)
         {
             IEnumerable<LocationEntity> locationList = await mongoCommand.SelectMore(x => x.Coordinate == location);
             return locationList;
         }
 
-        public IEnumerable<LocationEntity> SelectMoreLocationNear(float[] location) {
-            FilterDefinitionBuilder<LocationEntity> builder = new FilterDefinitionBuilder<LocationEntity>();
-
+        public IEnumerable<LocationEntity> SelectMoreLocationNear(double[] location) {
+            var filter = Builders<LocationEntity>.Filter.Near(x => x.Coordinate, location[0], location[1]);
             LocationEntity entity = new LocationEntity();
             entity.CarId = 1;
-            entity.Coordinate = new float[] { 129.4915f, 31.2646f };
+            entity.Coordinate = new double[] { 129.4915, 31.2646 };
             entity.CarNumber = "陕A78878";
 
-            var result = mongoCommand.SelectMoreLocationNear(x => "$near", builder, location[0], location[1]);
-            return result.Limit(10).ToList();
+            var result = mongoCommand.SelectMoreLocationNear(filter);
+            
+            result.Wait();
+            return result.Result;
         }
         public async Task<LocationEntity> InsertCarLocation(LocationEntity entity)
         {

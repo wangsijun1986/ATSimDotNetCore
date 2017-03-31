@@ -22,16 +22,16 @@ namespace ATSimWeb.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = locationService.GetNearByCarLocation(new float[] { 129.4905f, 31.2646f });
+            var result = locationService.GetNearByCarLocation(new double[] { 129.4905, 31.2646 });
             return Json(result);
         }
         [HttpPost]
         public IActionResult Post()
         {
             LocationEntity entity = new LocationEntity();
-            entity.CarId = 1;
-            entity.Coordinate = new float[] { 129.4915f, 31.2646f };
-            entity.CarNumber = "陕A78878";
+            entity.CarId = 2;
+            entity.Coordinate = new double[] { 129.4905, 31.2646 };
+            entity.CarNumber = "陕A75555";
             return Ok(locationService.InsertCarLocation(entity));
         }
 
@@ -40,7 +40,7 @@ namespace ATSimWeb.Controllers
         {
             LocationEntity entity = new LocationEntity();
             entity.CarId = 1;
-            entity.Coordinate = new float[] { 329.4915f, 31.2646f };
+            entity.Coordinate = new double[] { 329.4915, 31.2646 };
             entity.CarNumber = "陕A55555";
             locationService.UpdateCarLocation(entity);
             return Ok();

@@ -8,7 +8,7 @@ namespace ATSimService.Location
 {
     public interface ILocationService
     {
-        IEnumerable<LocationEntity> GetNearByCarLocation(float[] location);
+        IEnumerable<LocationEntity> GetNearByCarLocation(double[] location);
 
         void UpdateCarLocation(LocationEntity entity);
 

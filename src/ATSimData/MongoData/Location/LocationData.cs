@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using ATSimEntity.LocationEntities;
 using MongoDB.Driver;
+using MongoDB.Bson;
 
-namespace ATSimData.MongoData
+namespace ATSimData.MongoData.Location
 {
     public class LocationData : ILocationData
     {
@@ -23,17 +24,18 @@ namespace ATSimData.MongoData
         }
 
         public IEnumerable<LocationEntity> SelectMoreLocationNear(double[] location) {
-            var filter = Builders<LocationEntity>.Filter.Near(x => x.Coordinate, location[0], location[1],3);
+            var filter = Builders<LocationEntity>.Filter.Near(x => x.Coordinate, location[0], location[1]);
             LocationEntity entity = new LocationEntity();
             entity.CarId = 1;
             entity.Coordinate = new double[] { 129.4915, 31.2646 };
             entity.CarNumber = "陕A78878";
 
-            var result = mongoCommand.SelectMoreLocationNear(filter);
+            var result = mongoCommand.SelectMore(filter);
             
             result.Wait();
             return result.Result;
         }
+
         public async Task<LocationEntity> InsertCarLocation(LocationEntity entity)
         {
             await mongoCommand.InsertAsync(entity);

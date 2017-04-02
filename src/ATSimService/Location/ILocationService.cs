@@ -10,6 +10,8 @@ namespace ATSimService.Location
     {
         IEnumerable<LocationEntity> GetNearByCarLocation(double[] location);
 
+        LocationGeoNearEntity GetGeoNearLocationsByCoordinate(double[] location);
+
         void UpdateCarLocation(LocationEntity entity);
 
         LocationEntity InsertCarLocation(LocationEntity entity);

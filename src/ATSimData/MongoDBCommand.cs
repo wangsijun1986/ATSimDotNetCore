@@ -52,15 +52,17 @@ namespace ATSimData
             return await collection.Find<T>(func).FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> SelectMore(Expression<Func<T, bool>> func)
+        public async Task<IEnumerable<T>> SelectMore(Expression<Func<T, bool>> func)
         {
-            FilterDefinitionBuilder<T> builder = new FilterDefinitionBuilder<T>();
-            
             return await collection.Find(func).ToListAsync();
         }
-        public async Task<IEnumerable<T>> SelectMoreLocationNear(FilterDefinition<T> builder)
+        public async Task<IEnumerable<T>> SelectMore(FilterDefinition<T> builder)
         {
             return await collection.Find(builder).ToListAsync();
+        }
+        public async Task<T> RunCommandAsync(Command<T> command)
+        {
+            return await database.RunCommandAsync(command);
         }
         public async Task<T> SelectOneAndUpdate(Expression<Func<T,bool>> func,UpdateDefinition<T> documents)
         {

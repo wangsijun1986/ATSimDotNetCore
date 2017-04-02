@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ATSimEntity.LocationEntities;
-using ATSimData.MongoData;
+using ATSimData.MongoData.Location;
+using ATSimData.MongoData.LocationGeoNear;
 using MongoDB.Driver;
 using System.Runtime.CompilerServices;
 
@@ -12,9 +13,11 @@ namespace ATSimService.Location
     public class LocationService : ILocationService
     {
         private ILocationData locationData;
-        public LocationService(ILocationData locationData)
+        private ILocationGeoNearData locationGetNearData;
+        public LocationService(ILocationData locationData, ILocationGeoNearData locationGetNearData)
         {
             this.locationData = locationData;
+            this.locationGetNearData = locationGetNearData;
         }
 
         public IEnumerable<LocationEntity> GetNearByCarLocation(double[] location)
@@ -32,6 +35,11 @@ namespace ATSimService.Location
             //}
 
             return locationData.SelectMoreLocationNear(location);
+        }
+
+        public LocationGeoNearEntity GetGeoNearLocationsByCoordinate(double[] location)
+        {
+            return locationGetNearData.GetGeoNearLocationsByCoordinate(location);
         }
 
         public void UpdateCarLocation(LocationEntity entity)

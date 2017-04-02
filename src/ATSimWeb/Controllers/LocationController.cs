@@ -20,18 +20,28 @@ namespace ATSimWeb.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get([FromQuery(Name ="type")]int type)
         {
-            var result = locationService.GetNearByCarLocation(new double[] { 129.4905, 31.2646 });
-            return Json(result);
+            if (type == 1)
+            {
+                var result = locationService.GetNearByCarLocation(new double[] { 129.490511, 31.264622 });
+                return Json(result);
+            }
+            else
+            {
+                var result = locationService.GetGeoNearLocationsByCoordinate(new double[] { 129.490511, 31.264622 });
+                return Json(result);
+            }
+            
         }
+
         [HttpPost]
         public IActionResult Post()
         {
             LocationEntity entity = new LocationEntity();
-            entity.CarId = 2;
-            entity.Coordinate = new double[] { 129.4905, 31.2646 };
-            entity.CarNumber = "陕A75555";
+            entity.CarId = 1;
+            entity.Coordinate = new double[] { 129.114905, 31.222646 };
+            entity.CarNumber = "陕A11111";
             return Ok(locationService.InsertCarLocation(entity));
         }
 
@@ -39,9 +49,9 @@ namespace ATSimWeb.Controllers
         public IActionResult Put()
         {
             LocationEntity entity = new LocationEntity();
-            entity.CarId = 2;
-            entity.Coordinate = new double[] { 109.4915, 51.2646 };
-            entity.CarNumber = "陕A75555";
+            entity.CarId = 1;
+            entity.Coordinate = new double[] { 109.334915, 51.442646 };
+            entity.CarNumber = "陕A11111";
             locationService.UpdateCarLocation(entity);
             return Ok();
         }

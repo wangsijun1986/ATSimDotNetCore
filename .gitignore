@@ -25,3 +25,16 @@
 /src/ATSimService/project.lock.json
 /src/MysqlDatabasesScript/project.lock.json
 /src/ATSimWeb/text.xlsx
+/src/ATSimData/obj/Release/netstandard1.6
+/src/ATSimCommon/obj/Release/netstandard1.6
+/src/ATSimCommon/bin/Release/netstandard1.6
+/src/ATSimData/bin/Release/netstandard1.6
+/src/ATSimDto/bin/Release/netstandard1.6
+/src/ATSimDto/obj/Release/netstandard1.6
+/src/ATSimEntity/bin/Release/netstandard1.6
+/src/ATSimEntity/obj/Release/netstandard1.6
+/src/ATSimService/bin/Release/netstandard1.6
+/src/ATSimService/obj/Release/netstandard1.6
+/src/ATSimWeb/bin/Release
+/src/ATSimWeb/obj/Release/netcoreapp1.0
+/src/ATSimWeb/Properties/PublishProfiles

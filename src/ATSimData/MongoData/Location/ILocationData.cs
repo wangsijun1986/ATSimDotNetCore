@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ATSimData.MongoData
+namespace ATSimData.MongoData.Location
 {
     public interface ILocationData
     {
         Task<IEnumerable<LocationEntity>> GetNearByCarLocation(double[] location);
+
         Task<LocationEntity> UpdateCarLocation(LocationEntity entity,UpdateDefinition<LocationEntity> builder);
 
         Task<LocationEntity> InsertCarLocation(LocationEntity entity);

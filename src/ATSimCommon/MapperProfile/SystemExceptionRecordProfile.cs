@@ -10,6 +10,7 @@ namespace ATSimCommon.MapperProfile
 {
     public class SystemExceptionRecordProfile: Profile
     {
+        [Obsolete]
         protected override void Configure()
         {
             CreateMap<SystemExceptionRecordDto, SystemExceptionRecordEntity>().IgnoreAllPropertiesWithAnInaccessibleSetter();

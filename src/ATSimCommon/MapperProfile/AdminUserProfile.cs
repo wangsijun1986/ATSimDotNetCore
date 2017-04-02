@@ -10,6 +10,7 @@ namespace ATSimCommon.MapperProfile
 {
     public class AdminUserProfile : Profile
     {
+        [Obsolete]
         protected override void Configure()
         {
             CreateMap<AdminUserDto, AdminUserEntity>().IgnoreAllPropertiesWithAnInaccessibleSetter();

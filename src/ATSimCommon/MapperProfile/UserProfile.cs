@@ -10,6 +10,7 @@ namespace ATSimCommon.MapperProfile
 {
     public class UserProfile:Profile
     {
+        [Obsolete]
         protected override void Configure()
         {
             CreateMap<User, UserEntity>().IgnoreAllPropertiesWithAnInaccessibleSetter();

@@ -5,6 +5,9 @@
 /src/MysqlDatabasesScript/obj/Debug/netstandard1.6
 /src/MysqlDatabasesScript/bin/Debug/netstandard1.6
 /.vs
+/.vscode
+/src/ATSimWeb/appsettings.json
+/src/ATSimWeb/project.lock.json
 /src/ATSimCommon/bin/Debug/netstandard1.6
 /src/ATSimCommon/obj/Debug/netstandard1.6
 /src/ATSimData/bin/Debug/netstandard1.6

@@ -4383,7 +4383,7 @@
       },
       "ATSimCommon/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v1.6",
+        "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "ATSimDto": "1.0.0",
           "ATSimEntity": "1.0.0",
@@ -4404,15 +4404,15 @@
           "System.Xml.ReaderWriter": "4.3.0"
         },
         "compile": {
-          "netstandard1.6/ATSimCommon.dll": {}
+          "netcoreapp1.0/ATSimCommon.dll": {}
         },
         "runtime": {
-          "netstandard1.6/ATSimCommon.dll": {}
+          "netcoreapp1.0/ATSimCommon.dll": {}
         }
       },
       "ATSimData/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v1.6",
+        "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "ATSimEntity": "1.0.0",
           "Dapper": "1.50.2",
@@ -4421,44 +4421,44 @@
           "NETStandard.Library": "1.6.0"
         },
         "compile": {
-          "netstandard1.6/ATSimData.dll": {}
+          "netcoreapp1.0/ATSimData.dll": {}
         },
         "runtime": {
-          "netstandard1.6/ATSimData.dll": {}
+          "netcoreapp1.0/ATSimData.dll": {}
         }
       },
       "ATSimDto/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v1.6",
+        "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "NETStandard.Library": "1.6.0",
           "System.ComponentModel.Annotations": "4.3.0",
           "System.Runtime.Serialization.Primitives": "4.3.0"
         },
         "compile": {
-          "netstandard1.6/ATSimDto.dll": {}
+          "netcoreapp1.0/ATSimDto.dll": {}
         },
         "runtime": {
-          "netstandard1.6/ATSimDto.dll": {}
+          "netcoreapp1.0/ATSimDto.dll": {}
         }
       },
       "ATSimEntity/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v1.6",
+        "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "MongoDB.Bson": "2.4.3",
           "NETStandard.Library": "1.6.0"
         },
         "compile": {
-          "netstandard1.6/ATSimEntity.dll": {}
+          "netcoreapp1.0/ATSimEntity.dll": {}
         },
         "runtime": {
-          "netstandard1.6/ATSimEntity.dll": {}
+          "netcoreapp1.0/ATSimEntity.dll": {}
         }
       },
       "ATSimService/1.0.0": {
         "type": "project",
-        "framework": ".NETStandard,Version=v1.6",
+        "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
           "ATSimCommon": "1.0.0",
           "ATSimData": "1.0.0",
@@ -4467,10 +4467,10 @@
           "NETStandard.Library": "1.6.0"
         },
         "compile": {
-          "netstandard1.6/ATSimService.dll": {}
+          "netcoreapp1.0/ATSimService.dll": {}
         },
         "runtime": {
-          "netstandard1.6/ATSimService.dll": {}
+          "netcoreapp1.0/ATSimService.dll": {}
         }
       }
     }

@@ -1,22 +1,24 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "Launch test by chenjd",
-            "type": "mono",
-            "program": "${workspaceRoot}/src/ATSimWeb/bin/Debug/netcoreapp1.0/ATSimWeb.dll",
-            "args": [],
-            "request": "launch",
-            "runtimeExecutable": null,
-            "env": {}
-        },
-        {
-            "name": "Attach",
-            "type": "node",
-            "request": "launch",
-            "address": "localhost",
-            "port": 5858
-        },
+        // {
+        //     "name": "Launch test by chenjd",
+        //     "type": "mono",
+        //     "program": "${workspaceRoot}/src/ATSimWeb/bin/Debug/netcoreapp1.0/ATSimWeb.dll",
+        //     "args": [],
+        //     "request": "launch",
+        //     "runtimeExecutable": null,
+        //     "env": {},
+        //     "cwd": "${workspaceRoot}"
+        // },
+        // {
+        //     "name": "Attach",
+        //     "type": "node",
+        //     "request": "launch",
+        //     "address": "localhost",
+        //     "port": 5858,
+        //     "cwd": "${workspaceRoot}"
+        // },
         {
             "name": ".NET Core Launch (console)",
             "type": "coreclr",

@@ -13,7 +13,10 @@ namespace ATSimCommon
         private static Lazy<ConnectionMultiplexer> lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
         {
             string currentDirectory = Directory.GetCurrentDirectory();
-            return ConnectionMultiplexer.Connect(JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, "/appsettings.json")))["RedisConnectionString"].ToString());
+            if(!currentDirectory.Contains("src")){
+                currentDirectory = string.Concat(currentDirectory,@"\src\ATSimWeb");
+            }
+            return ConnectionMultiplexer.Connect(JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, @"\appsettings.json")))["RedisConnectionString"].ToString());
         });
 
         public static ConnectionMultiplexer Connection {

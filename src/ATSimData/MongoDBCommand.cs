@@ -24,7 +24,10 @@ namespace ATSimData
             if (string.IsNullOrWhiteSpace(mongoDbServer)||string.IsNullOrWhiteSpace(mongoDbName))
             {
                 string currentDirectory = getCurrentDirectory();
-                JObject jobject = JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, "/appsettings.json")));
+                if(!currentDirectory.Contains("src")){
+                    currentDirectory = string.Concat(currentDirectory,@"\src\ATSimWeb");
+                }
+                JObject jobject = JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, @"\appsettings.json")));
                 mongoDbServer = jobject["MongoDBConnectionString"].ToString();
                 mongoDbName = jobject["MongoDBName"].ToString();
             }

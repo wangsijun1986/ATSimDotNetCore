@@ -17,7 +17,10 @@ namespace ATSimWeb.Config
             if (!ErrorMessageInfo.Any())
             {
                 string currentDirectory = Directory.GetCurrentDirectory();
-                JObject errorInfo = JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, "/appsettings.errormessage.json")));
+                if(!currentDirectory.Contains("src")){
+                    currentDirectory = string.Concat(currentDirectory,@"\src\ATSimWeb");
+                }
+                JObject errorInfo = JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, @"\appsettings.errormessage.json")));
                 JToken[] tokens = errorInfo["errorInfo"].ToArray();
                 IDictionary<string, string> errorDictionary = new Dictionary<string,string>();
                 foreach(JToken item in tokens)

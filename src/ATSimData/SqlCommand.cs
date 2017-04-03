@@ -28,7 +28,10 @@ namespace ATSimData
         private string GetConnectionString()
         {
             string currentDirectory = Directory.GetCurrentDirectory();
-            string connectionString = JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, "/appsettings.json")))["MySqlConnectionString"].ToString();
+            if(!currentDirectory.Contains("src")){
+                currentDirectory = string.Concat(currentDirectory,@"\src\ATSimWeb");
+            }
+            string connectionString = JObject.Parse(File.ReadAllText(string.Concat(currentDirectory, @"\appsettings.json")))["MySqlConnectionString"].ToString();
             return connectionString;
         }
         private void setEncoding()

@@ -43,3 +43,13 @@
 /src/ATSimWeb/bin/Release
 /src/ATSimWeb/obj/Release/netcoreapp1.0
 /src/ATSimWeb/Properties/PublishProfiles
+/src/ATSimCommon/bin/Debug/netcoreapp1.0
+/src/ATSimCommon/obj/Debug/netcoreapp1.0
+/src/ATSimData/bin/Debug/netcoreapp1.0
+/src/ATSimData/obj/Debug/netcoreapp1.0
+/src/ATSimDto/bin/Debug/netcoreapp1.0
+/src/ATSimDto/obj/Debug/netcoreapp1.0
+/src/ATSimEntity/bin/Debug/netcoreapp1.0
+/src/ATSimEntity/obj/Debug/netcoreapp1.0
+/src/ATSimService/bin/Debug/netcoreapp1.0
+/src/ATSimService/obj/Debug/netcoreapp1.0

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using ATSimDto.Exception;
 using ATSimData.ExceptionRecord;
 using AutoMapper;
-using ATSimEntity;
+using ATSimEntity.Exception;
 
 namespace ATSimService.ExceptionRecord
 {

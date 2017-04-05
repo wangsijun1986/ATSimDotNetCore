@@ -1,4 +1,4 @@
-﻿using ATSimEntity.LocationEntities;
+﻿using ATSimEntity.Location;
 using System;
 using System.Collections.Generic;
 using System.Linq;

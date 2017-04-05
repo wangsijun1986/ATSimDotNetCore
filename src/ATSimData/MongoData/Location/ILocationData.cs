@@ -1,4 +1,4 @@
-﻿using ATSimEntity.LocationEntities;
+﻿using ATSimEntity.Location;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

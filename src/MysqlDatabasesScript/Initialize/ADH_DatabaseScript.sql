@@ -1,8 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2017/4/4 23:06:57                            */
+/* Created on:     2017/4/7 3:08:27                             */
 /*==============================================================*/
 
+
+drop procedure if exists USP_Page_Users;
 
 drop table if exists AdminGroup;
 
@@ -84,6 +86,7 @@ create table AdminUsers
    CreateTime           datetime not null default CURRENT_TIMESTAMP comment '管理员创建时间',
    LastLoginTime        datetime not null default CURRENT_TIMESTAMP comment '管理员最后登录时间',
    CurrentlyLoginTime   datetime not null default CURRENT_TIMESTAMP comment '当前登录时间',
+   IsStop               bit not null default 0 comment '账号已禁用',
    primary key (AdminId)
 );
 
@@ -446,4 +449,44 @@ alter table Organization add constraint FK_Reference_4 foreign key (CommunityId)
 
 alter table Wallet add constraint FK_Reference_16 foreign key (UserId)
       references Users (UserId) on delete restrict on update restrict;
+
+
+DELIMITER $$
+USE `adh`$$
+CREATE PROCEDURE `USP_Page_Users` (
+    pageIndex INT,
+    pageSize INT,
+    OUT pagecount INT
+)
+BEGIN
+    DECLARE startIndex INT DEFAULT 0;
+    DECLARE pCount INT DEFAULT 0;
+    SET startIndex = (pageIndex-1)*pageSize;
+SELECT 
+    UserId,
+    Phone,
+    Password,
+    Role,
+    CreateTime,
+    LastLoginTime,
+    CurrentlyLoginTime,
+    CurrentlyIP,
+    CurrentlyPort,
+    IdentityCardNo,
+    IdentityCardPath,
+    IdentityCardBackPath,
+    UserIntegrals,
+    Avatar,
+    Validity
+FROM
+    Users
+LIMIT STARTINDEX , PAGESIZE;
+SELECT 
+    COUNT(1)
+INTO pCount FROM
+    Users;
+    SET pagecount=pCount;
+END$$
+
+DELIMITER ;
 

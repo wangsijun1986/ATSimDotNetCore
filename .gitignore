@@ -53,3 +53,14 @@
 /src/ATSimEntity/obj/Debug/netcoreapp1.0
 /src/ATSimService/bin/Debug/netcoreapp1.0
 /src/ATSimService/obj/Debug/netcoreapp1.0
+/src/ATSimCommon/bin/Release/netcoreapp1.0
+/src/ATSimCommon/obj/Release/netcoreapp1.0
+/src/ATSimData/bin/Release/netcoreapp1.0
+/src/ATSimData/obj/Release/netcoreapp1.0
+/src/ATSimDto/bin/Release/netcoreapp1.0
+/src/ATSimDto/obj/Release/netcoreapp1.0
+/src/ATSimEntity/bin/Release/netcoreapp1.0
+/src/ATSimEntity/obj/Release/netcoreapp1.0
+/src/ATSimService/bin/Release/netcoreapp1.0
+/src/ATSimService/obj/Release/netcoreapp1.0
+/src/ATSimWebTest/obj/Debug/netstandard1.6

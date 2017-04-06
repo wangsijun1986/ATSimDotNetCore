@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using ATSimDto.AdminUser;
-using ATSimEntity;
+using ATSimEntity.AdminUser;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace ATSimCommon.MapperProfile
         {
             CreateMap<AdminUserDto, AdminUserEntity>().IgnoreAllPropertiesWithAnInaccessibleSetter();
             CreateMap<AdminUserEntity, AdminUserDto>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+            CreateMap<AdminUserRequestDto, AdminUserEntity>().IgnoreAllPropertiesWithAnInaccessibleSetter();
         }
     }
 }

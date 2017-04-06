@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ATSimEntity.LocationEntities;
+using ATSimEntity.Location;
 using MongoDB.Driver;
 using MongoDB.Bson;
 

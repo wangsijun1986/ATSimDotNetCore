@@ -30,5 +30,7 @@ namespace ATSimData
         object ExecuteReader(string sqlTextOrScriptName, CommandType type, MySqlTransaction transaction = null);
         Task<object> ExecuteReaderAsync(string sqlTextOrScriptName, DynamicParameters parameters, CommandType type, MySqlTransaction transaction = null);
         Task<object> ExecuteReaderAsync(string sqlTextOrScriptName, CommandType type, MySqlTransaction transaction = null);
+        IList<T> FindToListByPage<T>(string cmd, DynamicParameters param, bool flag = true) where T : class, new();
+        Task<IList<T>> FindToListByPageAsync<T>(string cmd, DynamicParameters param, bool flag = true) where T : class, new();
     }
 }

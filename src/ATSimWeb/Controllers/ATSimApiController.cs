@@ -15,14 +15,16 @@ namespace ATSimWeb.Controllers
     [WebApiExceptionFilterAttribute]
     public class ATSimApiController : Controller
     {
-        protected internal BadRequestObjectResult BadRequestWithContent(string errorCode)
+        protected internal BadRequestObjectResult BadRequestWithContent(string errorLabel)
         {
-            return BadRequest(ErrorMessageManagement.GetResponseErrorMessage(errorCode));
+            return BadRequest(ErrorMessageManagement.GetResponseErrorMessage(errorLabel));
         }
 
-        protected internal NotFoundObjectResult NotFoundWithContent(string errorCode)
+        protected internal NotFoundObjectResult NotFoundWithContent(string errorLabel)
         {
-            return NotFound(ErrorMessageManagement.GetResponseErrorMessage(errorCode));
+            return NotFound(ErrorMessageManagement.GetResponseErrorMessage(errorLabel));
         }
+
+
     }
 }

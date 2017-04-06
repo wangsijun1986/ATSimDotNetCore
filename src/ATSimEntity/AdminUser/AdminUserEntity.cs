@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ATSimEntity.AdminUsers
+namespace ATSimEntity.AdminUser
 {
     public class AdminUserEntity
     {

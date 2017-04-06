@@ -29,8 +29,7 @@ namespace ATSimWeb.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            //string name = HttpContext.User.Identity.Name;
-            //return BadRequestWithContent("001001001");
+           
             FileInfo file = new FileInfo(string.Format("{0}\\{1}", Directory.GetCurrentDirectory(), "text.xlsx"));
             if (file.Exists)
             {

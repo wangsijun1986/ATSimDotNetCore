@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using ATSimDto.Exception;
-using ATSimEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ATSimEntity.Exception;
 
 namespace ATSimCommon.MapperProfile
 {

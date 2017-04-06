@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ATSimDto.AdminUser;
 using ATSimData.AdminUser;
-using ATSimEntity;
+using ATSimEntity.AdminUser;
 using AutoMapper;
 using ATSimCommon;
 using StackExchange.Redis;
@@ -23,33 +23,33 @@ namespace ATSimService.AdminUser
             this.adminUserData = adminUserData;
         }
 
-        public void AddAdminUserInfo(AdminUserDto dto)
+        public void AddAdminUserInfo(AdminUserRequestDto dto)
         {
-            if (adminUserData.CheckAdminUserExists(dto.UserName))
+            if (adminUserData.CheckAdminUserExists(dto.LoginName))
             {
                 throw new ArgumentException("AdminUserAlreadyExists");
             }
-            var entity = Mapper.Map<AdminUserDto, AdminUserEntity>(dto);
+            var entity = Mapper.Map<AdminUserRequestDto, AdminUserEntity>(dto);
             entity.Password = new Encryption().EncryptValue(entity.Password);
             adminUserData.AddAdminUserInfo(entity);
         }
 
-        public AdminUserDto GetUserInfo(string userName, string password)
+        public AdminUserDto GetUserInfo(string loginName, string password)
         {
-            AdminUserEntity entity = adminUserData.GetUserInfo(userName);
+            AdminUserEntity entity = adminUserData.GetUserInfo(loginName);
             string decryptPassword = new Encryption().DecryptValue(entity.Password);
-            if (password.Equals(decryptPassword))
+            if (!password.Equals(decryptPassword))
             {
-                entity.Password = string.Empty;
-                return Mapper.Map<AdminUserEntity, AdminUserDto>(entity);
+                throw new ArgumentException("PasswordNotEqual");
             }
-            else
-            {
-                throw new ArgumentException("AdminUserPasswordDifference");
-            }
-            
+            entity.Password = string.Empty;
+            return Mapper.Map<AdminUserEntity, AdminUserDto>(entity);
         }
-
+        /// <summary>
+        /// 访问redis缓存示例代码
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public AdminUserDto GetUserInfo(long id)
         {
             string key = string.Format("GetUserInfo@Id:{0}", id);
@@ -69,7 +69,7 @@ namespace ATSimService.AdminUser
                 if (db.IsConnected(key) && (!db.KeyExists(key) || db.KeyType(key).Equals(RedisType.String)))
                 {
                     db.KeyDelete(key);
-                    db.StringSet(key,JObject.FromObject(entity).ToString());
+                    db.StringSet(key, JObject.FromObject(entity).ToString());
                 }
             }
             return Mapper.Map<AdminUserEntity, AdminUserDto>(entity);

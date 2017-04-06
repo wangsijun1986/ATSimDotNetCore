@@ -43,12 +43,12 @@ namespace ATSimWeb.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]AdminUserDto adminUser)
+        public IActionResult Post([FromBody]AdminUserRequestDto adminUser)
         {
             try
             {
                 adminUserService.AddAdminUserInfo(adminUser);
-                var adminUserInfoDto = adminUserService.GetUserInfo(adminUser.UserName, adminUser.Password);
+                var adminUserInfoDto = adminUserService.GetUserInfo(adminUser.LoginName, adminUser.Password);
                 return CreatedAtRoute("GetUserInfoByUserNameAndPassword", new { name = adminUser.UserName, password = adminUser.Password }, adminUserInfoDto);
             }
             catch(ArgumentException ex)

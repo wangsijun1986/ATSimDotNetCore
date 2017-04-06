@@ -18,3 +18,17 @@ CREATE TABLE `user` (
   `Age` int(11) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+--{
+--  "admin_id":0,
+--  "login_name":"wangsijun1",
+--  "password":"wangsijun1",
+--  "role":"Admin",
+--  "phone":"15332345550",
+--  "group_id":1,
+--  "user_name":"王思俊1",
+--  "organization_id":1,
+--  "email":"wangsijun1986@vip.qq.com"
+--}

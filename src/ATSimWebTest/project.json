@@ -1,16 +1,26 @@
 {
   "version": "1.0.0-*",
-  "testRunner": "xunit",
+  "testRunner": "mstest",
   "dependencies": {
-    "ATSimService": "1.0.0-*",
-    "NETStandard.Library": "1.6.0",
+    "MSTest.TestFramework": "1.1.14",
+    "dotnet-test-mstest": "1.1.2-preview",
+    "ATSimWeb": "1.0.0-*",
     "xunit": "2.2.0",
     "xunit.runner.console": "2.2.0"
   },
-
   "frameworks": {
-    "netstandard1.6": {
-      "imports": "dnxcore50"
+    "netcoreapp1.0": {
+      "imports": [
+        "dnxcore50",
+        "portable-net45+win8"
+      ],
+
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0",
+          "type": "platform"
+        }
+      }
     }
   }
 }

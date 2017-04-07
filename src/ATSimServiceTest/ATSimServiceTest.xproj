@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>85da15c7-8c7f-4c2c-80cc-989ee5dda0cd</ProjectGuid>
-    <RootNamespace>ATSimWebTest</RootNamespace>
+    <ProjectGuid>203f00c0-18ce-4fb7-9f10-2f3afa969444</ProjectGuid>
+    <RootNamespace>ATSimServiceTest</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

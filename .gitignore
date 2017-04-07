@@ -64,3 +64,8 @@
 /src/ATSimService/bin/Release/netcoreapp1.0
 /src/ATSimService/obj/Release/netcoreapp1.0
 /src/ATSimWebTest/obj/Debug/netstandard1.6
+/src/ATSimWebTest/bin/Debug/netcoreapp1.0
+/src/ATSimWebTest/bin/Debug/netstandard1.6
+/src/ATSimWebTest/obj/Debug/netcoreapp1.0
+/src/ATSimServiceTest/bin/Debug/netstandard1.6
+/src/ATSimServiceTest/obj/Debug/netstandard1.6

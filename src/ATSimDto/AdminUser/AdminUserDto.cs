@@ -157,6 +157,10 @@ namespace ATSimDto.AdminUser
         /// 账号已停用
         /// </summary>
         [DataMember(Name = "is_stop")]
-        public bool IsStop { get; set; }
+        public bool IsStop
+        {
+            get { return isstop; }
+            set { isstop = value; }
+        }
     }
 }
